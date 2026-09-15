@@ -16,6 +16,7 @@ Live: https://pl1ump.github.io/service-job/
 | Milling | drilling, tapping, marking, bevel milling — cutting speed and feed per tooth |
 | Common | machine construction, program structure, three height-control principles, remote diagnosis |
 | Faults | 36 symptom → cause entries, searchable and filterable by technology |
+| Glossary | 177 terms in Ukrainian / Slovak / English, searchable across all three at once |
 
 Three languages: Ukrainian, Slovak, English. The choice is kept in `localStorage`.
 
@@ -24,6 +25,7 @@ Three languages: Ukrainian, Slovak, English. The choice is kept in `localStorage
 ```
 index.html    markup, styles, SVG diagram templates
 content.js    all text in three languages + the fault table
+glossary.js   the trilingual term list
 app.js        renders panels from content.js, wires navigation and filters
 ```
 

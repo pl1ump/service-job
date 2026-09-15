@@ -2,10 +2,11 @@
 (function () {
   'use strict';
 
-  var TAB_ORDER = ['plasma', 'laser', 'water', 'oxy', 'mill', 'common', 'faults'];
+  var TAB_ORDER = ['plasma', 'laser', 'water', 'oxy', 'mill', 'common', 'faults', 'gloss'];
   var BEAD = {
     plasma: 'var(--arc)', laser: 'var(--beam)', water: 'var(--water)',
-    oxy: 'var(--heat)', mill: 'var(--mech)', common: 'var(--steel)', faults: 'var(--bad)'
+    oxy: 'var(--heat)', mill: 'var(--mech)', common: 'var(--steel)', faults: 'var(--bad)',
+    gloss: 'var(--hafnium)'
   };
   var TAGCLS = { prog: 't-prog', cons: 't-cons', set: 't-set', mach: 't-mach', safe: 't-safe' };
 
@@ -95,6 +96,53 @@
     return html + '</tbody></table></div></section></div>';
   }
 
+
+  function glossPage() {
+    var M = GLOSS_META[lang];
+    var html = '<div class="panelview">' +
+      '<div class="phead">' +
+      '<div class="eyebrow" style="color:var(--hafnium)">' + M.eyebrow + '</div>' +
+      '<h1>' + M.h1 + '</h1><p class="lede">' + M.lede + '</p></div>' +
+      '<section><div class="search-row">' +
+      '<input type="search" id="gq" placeholder="' + M.ph + '" aria-label="' + M.h1 + '">' +
+      '<span class="count" id="gcount"></span></div>' +
+      '<div class="tbl-wrap"><table id="gtable"><thead><tr>' +
+      M.head.map(function (h) { return '<th>' + h + '</th>'; }).join('') +
+      '</tr></thead><tbody>';
+    var seen = {};
+    GLOSSARY.forEach(function (g) {
+      if (!seen[g[0]]) {
+        seen[g[0]] = 1;
+        html += '<tr class="gcat" data-c="' + g[0] + '"><td colspan="3">' + M.cats[g[0]] + '</td></tr>';
+      }
+      html += '<tr data-c="' + g[0] + '"><td class="sym">' + g[1] + '</td>' +
+        '<td>' + g[2] + '</td><td class="cause">' + g[3] + '</td></tr>';
+    });
+    return html + '</tbody></table></div></section></div>';
+  }
+
+  function wireGloss() {
+    var q = document.getElementById('gq');
+    if (!q) return;
+    var all = [].slice.call(document.querySelectorAll('#gtable tbody tr'));
+    var terms = all.filter(function (r) { return r.className !== 'gcat'; });
+    var cats = all.filter(function (r) { return r.className === 'gcat'; });
+    var count = document.getElementById('gcount');
+
+    function apply() {
+      var t = q.value.trim().toLowerCase(), shown = 0, live = {};
+      terms.forEach(function (r) {
+        var on = !t || r.textContent.toLowerCase().indexOf(t) !== -1;
+        r.hidden = !on;
+        if (on) { shown++; live[r.getAttribute('data-c')] = 1; }
+      });
+      cats.forEach(function (r) { r.hidden = !live[r.getAttribute('data-c')]; });
+      count.textContent = shown + ' ' + GLOSS_META[lang].of + ' ' + terms.length;
+    }
+    q.addEventListener('input', apply);
+    apply();
+  }
+
   /* ---------- wiring ---------- */
   function wireFaults(C) {
     var q = document.getElementById('q');
@@ -137,9 +185,10 @@
   }
 
   function renderView(C) {
-    document.getElementById('view').innerHTML =
-      tab === 'faults' ? faultsPage(C) : techPage(tab, C);
-    if (tab === 'faults') wireFaults(C);
+    var v = document.getElementById('view');
+    if (tab === 'faults') { v.innerHTML = faultsPage(C); wireFaults(C); }
+    else if (tab === 'gloss') { v.innerHTML = glossPage(); wireGloss(); }
+    else { v.innerHTML = techPage(tab, C); }
   }
 
   function render(scroll) {

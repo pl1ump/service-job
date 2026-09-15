@@ -150,6 +150,13 @@
   .filters button:focus-visible{outline:2px solid var(--arc);outline-offset:2px;}
   .count{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);}
   tr[hidden]{display:none;}
+  tr.gcat td{
+    font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--hafnium);background:var(--panel-2);font-weight:600;
+    padding-top:14px;padding-bottom:8px;border-bottom:1px solid var(--line);
+  }
+  #gtable td{font-size:14.5px;}
+  #gtable td.sym{font-weight:500;}
 
   footer{max-width:1080px;margin:0 auto;padding:0 16px 60px;color:var(--ink-3);font-size:12.5px;font-family:var(--f-mono);}
   footer .fr{border-top:1px solid var(--line);padding-top:16px;}
@@ -399,6 +406,7 @@ oxy: function (L) { return '\
 </script>
 
 <script src="content.js"></script>
+<script src="glossary.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
