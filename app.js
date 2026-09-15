@@ -2,11 +2,11 @@
 (function () {
   'use strict';
 
-  var TAB_ORDER = ['plasma', 'laser', 'water', 'oxy', 'mill', 'common', 'faults', 'gloss'];
+  var TAB_ORDER = ['plasma', 'laser', 'water', 'oxy', 'mill', 'common', 'faults', 'gloss', 'iv'];
   var BEAD = {
     plasma: 'var(--arc)', laser: 'var(--beam)', water: 'var(--water)',
     oxy: 'var(--heat)', mill: 'var(--mech)', common: 'var(--steel)', faults: 'var(--bad)',
-    gloss: 'var(--hafnium)'
+    gloss: 'var(--hafnium)', iv: 'var(--ok)'
   };
   var TAGCLS = { prog: 't-prog', cons: 't-cons', set: 't-set', mach: 't-mach', safe: 't-safe' };
 
@@ -143,6 +143,27 @@
     apply();
   }
 
+
+  function ivPage() {
+    var M = IV_META[lang], rows = INTERVIEW[lang];
+    var html = '<div class="panelview">' +
+      '<div class="phead">' +
+      '<div class="eyebrow" style="color:var(--ok)">' + M.eyebrow + '</div>' +
+      '<h1>' + M.h1 + '</h1><p class="lede">' + M.lede + '</p>' +
+      '<div class="qhint">' + M.hint + '</div></div>';
+    var cur = null;
+    rows.forEach(function (r, i) {
+      if (r[0] !== cur) {
+        if (cur !== null) html += '</div></section>';
+        cur = r[0];
+        html += '<section><div class="qcat">' + M.cats[cur] + '</div><div class="qa">';
+      }
+      html += '<details class="q"><summary>' + r[1] + '</summary>' +
+        '<div class="ans">' + r[2] + '</div></details>';
+    });
+    return html + '</div></section></div>';
+  }
+
   /* ---------- wiring ---------- */
   function wireFaults(C) {
     var q = document.getElementById('q');
@@ -188,6 +209,7 @@
     var v = document.getElementById('view');
     if (tab === 'faults') { v.innerHTML = faultsPage(C); wireFaults(C); }
     else if (tab === 'gloss') { v.innerHTML = glossPage(); wireGloss(); }
+    else if (tab === 'iv') { v.innerHTML = ivPage(); }
     else { v.innerHTML = techPage(tab, C); }
   }
 

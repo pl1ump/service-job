@@ -158,6 +158,29 @@
   #gtable td{font-size:14.5px;}
   #gtable td.sym{font-weight:500;}
 
+  .qa{display:flex;flex-direction:column;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);}
+  details.q{background:var(--panel);}
+  details.q summary{
+    cursor:pointer;list-style:none;padding:14px 18px;
+    font-weight:600;font-size:15px;line-height:1.45;color:var(--ink);
+    display:flex;gap:11px;align-items:flex-start;
+  }
+  details.q summary::-webkit-details-marker{display:none;}
+  details.q summary::before{
+    content:'+';font-family:var(--f-mono);font-weight:500;font-size:15px;
+    color:var(--arc);flex:0 0 auto;line-height:1.45;
+  }
+  details.q[open] summary::before{content:'\2212';}
+  details.q summary:hover{background:var(--panel-2);}
+  details.q summary:focus-visible{outline:2px solid var(--arc);outline-offset:-2px;}
+  details.q .ans{padding:0 18px 16px 41px;color:var(--ink-2);font-size:14.8px;line-height:1.62;}
+  details.q .ans b{color:var(--ink);}
+  .qcat{
+    font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--arc);font-weight:600;padding-top:8px;
+  }
+  .qhint{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);}
+
   footer{max-width:1080px;margin:0 auto;padding:0 16px 60px;color:var(--ink-3);font-size:12.5px;font-family:var(--f-mono);}
   footer .fr{border-top:1px solid var(--line);padding-top:16px;}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
@@ -407,6 +430,7 @@ oxy: function (L) { return '\
 
 <script src="content.js"></script>
 <script src="glossary.js"></script>
+<script src="interview.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
