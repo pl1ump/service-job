@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Šablóna / Шпаргалка / Cheat sheet — CNC rezanie</title>
+<meta name="description" content="Служебная шпаргалка по технологіях CNC-різання: плазма, лазер, воднострумінь, кисень, фрезерування.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --ground:#E9EDF1; --panel:#FFFFFF; --panel-2:#F3F6F9;
+    --line:#C6D0DA; --line-soft:#DCE3EA;
+    --ink:#131A21; --ink-2:#46545F; --ink-3:#6D7C88;
+    --arc:#0A7C91; --arc-glow:#16A6BF;
+    --copper:#A85F38; --hafnium:#7A5AA8;
+    --heat:#C2661A; --steel:#8C9AA6; --steel-dark:#5E6D79;
+    --water:#2C6BA8; --beam:#B03A6E; --mech:#5F7038;
+    --ok:#2E7D52; --warn:#B5751A; --bad:#B33A3A;
+    --shadow:0 1px 2px rgba(19,26,33,.06),0 8px 24px -12px rgba(19,26,33,.18);
+    --f-disp:"IBM Plex Sans Condensed","Helvetica Neue",Arial,sans-serif;
+    --f-body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+    --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#0E1319; --panel:#161D25; --panel-2:#1B242E;
+      --line:#2C3945; --line-soft:#222D38;
+      --ink:#DFE7EE; --ink-2:#A2B0BC; --ink-3:#76858F;
+      --arc:#3FD2EC; --arc-glow:#8BEBFB;
+      --copper:#D08A5E; --hafnium:#B49AE0;
+      --heat:#E8913A; --steel:#7C8B98; --steel-dark:#4A5762;
+      --water:#61A6E4; --beam:#EC7CAA; --mech:#A7BE6C;
+      --ok:#55BE85; --warn:#E0A544; --bad:#E86A6A;
+      --shadow:0 1px 2px rgba(0,0,0,.5),0 10px 30px -14px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E1319; --panel:#161D25; --panel-2:#1B242E;
+    --line:#2C3945; --line-soft:#222D38;
+    --ink:#DFE7EE; --ink-2:#A2B0BC; --ink-3:#76858F;
+    --arc:#3FD2EC; --arc-glow:#8BEBFB;
+    --copper:#D08A5E; --hafnium:#B49AE0;
+    --heat:#E8913A; --steel:#7C8B98; --steel-dark:#4A5762;
+    --water:#61A6E4; --beam:#EC7CAA; --mech:#A7BE6C;
+    --ok:#55BE85; --warn:#E0A544; --bad:#E86A6A;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 10px 30px -14px rgba(0,0,0,.8);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  img{max-width:100%;}
+  [hidden]{display:none!important;}
+
+  .topbar{position:sticky;top:0;z-index:20;background:var(--panel);border-bottom:1px solid var(--line);}
+  .topbar-in{max-width:1080px;margin:0 auto;padding:10px 16px;display:flex;flex-direction:column;gap:9px;}
+  .brandrow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+  .brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;min-width:0;}
+  .brand .nm{font-family:var(--f-disp);font-weight:700;font-size:17px;}
+  .brand .sub{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);}
+
+  .langs{display:flex;gap:0;flex:0 0 auto;border:1px solid var(--line);border-radius:2px;overflow:hidden;}
+  .langs button{
+    font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.07em;
+    padding:6px 11px;border:0;border-right:1px solid var(--line);
+    background:var(--panel);color:var(--ink-3);cursor:pointer;
+  }
+  .langs button:last-child{border-right:0;}
+  .langs button[aria-pressed="true"]{background:var(--panel-2);color:var(--ink);font-weight:600;}
+  .langs button:focus-visible{outline:2px solid var(--arc);outline-offset:-2px;}
+
+  nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+  nav::-webkit-scrollbar{display:none;}
+  nav button{
+    flex:0 0 auto;font-family:var(--f-body);font-size:13.5px;font-weight:500;
+    color:var(--ink-2);background:transparent;border:1px solid var(--line-soft);
+    border-radius:2px;padding:7px 13px;cursor:pointer;white-space:nowrap;
+    display:flex;align-items:center;gap:7px;
+  }
+  nav button:hover{color:var(--ink);border-color:var(--line);}
+  nav button .bead{width:7px;height:7px;border-radius:50%;flex:0 0 auto;}
+  nav button[aria-selected="true"]{background:var(--panel-2);color:var(--ink);border-color:var(--ink-3);font-weight:600;}
+  nav button:focus-visible{outline:2px solid var(--arc);outline-offset:2px;}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:30px 16px 90px;}
+  .panelview{display:flex;flex-direction:column;gap:38px;}
+  .phead{display:flex;flex-direction:column;gap:9px;}
+  .eyebrow{font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;}
+  h1{font-family:var(--f-disp);font-weight:700;font-size:clamp(29px,6vw,46px);line-height:1.05;margin:0;text-wrap:balance;}
+  .lede{color:var(--ink-2);max-width:64ch;margin:0;font-size:16.5px;}
+  section{display:flex;flex-direction:column;gap:15px;}
+  h2{font-family:var(--f-disp);font-weight:600;font-size:23px;margin:0;text-wrap:balance;display:flex;align-items:baseline;gap:11px;}
+  h2 .n{font-family:var(--f-mono);font-size:11.5px;font-weight:500;letter-spacing:.1em;}
+  h3{font-family:var(--f-body);font-weight:600;font-size:15.5px;margin:0 0 3px;}
+  p{margin:0;max-width:68ch;}
+  p.note{color:var(--ink-2);font-size:14.5px;}
+  ul{margin:0;padding-left:19px;display:flex;flex-direction:column;gap:6px;}
+  li{font-size:15px;color:var(--ink-2);}
+  li b{color:var(--ink);}
+
+  .fig{background:var(--panel);border:1px solid var(--line-soft);border-radius:3px;box-shadow:var(--shadow);padding:10px;overflow-x:auto;}
+  .fig svg{display:block;width:100%;height:auto;min-width:520px;}
+  figcaption{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);padding:9px 3px 1px;}
+  svg text{font-family:var(--f-mono);}
+  .lbl{font-size:12px;font-weight:500;}
+  .lbl-sm{font-size:10.5px;}
+  .leader{stroke:var(--ink-3);stroke-width:1;fill:none;}
+
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);}
+  .cell{background:var(--panel);padding:15px 17px;display:flex;flex-direction:column;gap:7px;}
+  .cell p{font-size:14.5px;color:var(--ink-2);}
+  .cell p b{color:var(--ink);}
+  .cell .kv{font-family:var(--f-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);}
+
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--line-soft);}
+  table{border-collapse:collapse;width:100%;min-width:520px;background:var(--panel);}
+  th,td{text-align:left;padding:11px 15px;border-bottom:1px solid var(--line-soft);vertical-align:top;font-size:14.5px;}
+  th{font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:500;background:var(--panel-2);white-space:nowrap;}
+  tbody tr:last-child td{border-bottom:0;}
+  td.sym{font-weight:500;}
+  td.cause{color:var(--ink-2);}
+  .tag{font-family:var(--f-mono);font-size:10px;letter-spacing:.05em;padding:2px 7px;border-radius:2px;white-space:nowrap;display:inline-block;}
+  .t-prog{color:var(--arc);background:color-mix(in srgb,var(--arc) 13%,transparent);}
+  .t-cons{color:var(--heat);background:color-mix(in srgb,var(--heat) 15%,transparent);}
+  .t-set{color:var(--warn);background:color-mix(in srgb,var(--warn) 15%,transparent);}
+  .t-mach{color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,transparent);}
+  .t-safe{color:var(--mech);background:color-mix(in srgb,var(--mech) 18%,transparent);}
+
+  .callout{border-left:3px solid var(--arc);background:var(--panel);padding:14px 18px;display:flex;flex-direction:column;gap:7px;}
+  .callout .hd{font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--arc);}
+  .callout p{font-size:14.8px;}
+
+  .chips{display:flex;flex-wrap:wrap;gap:7px;}
+  .chip{font-family:var(--f-mono);font-size:11px;padding:4px 10px;border:1px solid var(--line);border-radius:2px;color:var(--ink-2);background:var(--panel);}
+
+  .search-row{display:flex;gap:9px;flex-wrap:wrap;align-items:center;}
+  input[type="search"]{
+    flex:1 1 240px;font-family:var(--f-body);font-size:16px;color:var(--ink);
+    background:var(--panel);border:1px solid var(--line);border-radius:2px;padding:9px 12px;
+  }
+  input[type="search"]:focus{outline:2px solid var(--arc);outline-offset:1px;}
+  .filters{display:flex;gap:5px;flex-wrap:wrap;}
+  .filters button{
+    font-family:var(--f-mono);font-size:11px;letter-spacing:.05em;padding:6px 10px;
+    border:1px solid var(--line-soft);background:var(--panel);color:var(--ink-2);
+    border-radius:2px;cursor:pointer;
+  }
+  .filters button[aria-pressed="true"]{background:var(--panel-2);color:var(--ink);border-color:var(--ink-3);}
+  .filters button:focus-visible{outline:2px solid var(--arc);outline-offset:2px;}
+  .count{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);}
+  tr[hidden]{display:none;}
+
+  footer{max-width:1080px;margin:0 auto;padding:0 16px 60px;color:var(--ink-3);font-size:12.5px;font-family:var(--f-mono);}
+  footer .fr{border-top:1px solid var(--line);padding-top:16px;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <div class="brandrow">
+      <div class="brand">
+        <span class="nm" id="brandName"></span>
+        <span class="sub" id="brandSub"></span>
+      </div>
+      <div class="langs" id="langs">
+        <button data-l="uk" aria-pressed="true">UKR</button>
+        <button data-l="sk" aria-pressed="false">SVK</button>
+        <button data-l="en" aria-pressed="false">ENG</button>
+      </div>
+    </div>
+    <nav id="nav" role="tablist"></nav>
+  </div>
+</div>
+
+<div class="wrap"><div id="view"></div></div>
+<footer><div class="fr" id="foot"></div></footer>
+
+<script>
+/* ============================================================
+   SVG diagrams — labels are injected per language
+   ============================================================ */
+var SVG = {
+torch: function (L) { return '\
+<svg viewBox="0 0 900 600" role="img" aria-label="'+L.alt+'">\
+<defs><linearGradient id="arcG" x1="0" y1="0" x2="0" y2="1">\
+<stop offset="0%" stop-color="var(--arc-glow)"/><stop offset="55%" stop-color="var(--arc)"/><stop offset="100%" stop-color="var(--heat)"/>\
+</linearGradient></defs>\
+<rect x="318" y="40" width="204" height="196" rx="4" fill="var(--steel)" opacity=".25"/>\
+<rect x="318" y="40" width="204" height="196" rx="4" fill="none" stroke="var(--steel-dark)" stroke-width="1.5"/>\
+<path d="M352 62 L352 150" stroke="var(--arc)" stroke-width="2" fill="none" stroke-dasharray="5 4"/>\
+<path d="M352 156 l-4 -9 l8 0 z" fill="var(--arc)"/>\
+<path d="M488 62 L488 150" stroke="var(--arc)" stroke-width="2" fill="none" stroke-dasharray="5 4"/>\
+<path d="M488 156 l-4 -9 l8 0 z" fill="var(--arc)"/>\
+<text class="lbl-sm" x="330" y="56" fill="var(--arc)">'+L.gas+'</text>\
+<text class="lbl-sm" x="466" y="56" fill="var(--arc)">'+L.gas+'</text>\
+<rect x="400" y="70" width="40" height="176" rx="2" fill="var(--copper)"/>\
+<rect x="411" y="232" width="18" height="16" rx="1.5" fill="var(--hafnium)"/>\
+<g fill="var(--steel)"><rect x="356" y="168" width="44" height="46" rx="2"/><rect x="440" y="168" width="44" height="46" rx="2"/></g>\
+<g stroke="var(--arc)" stroke-width="2.2" fill="none" stroke-linecap="round">\
+<path d="M366 178 L392 200"/><path d="M366 196 L392 208"/><path d="M474 178 L448 200"/><path d="M474 196 L448 208"/></g>\
+<path d="M368 250 L400 250 L424 296 L424 316 L398 316 L378 274 Z" fill="var(--steel)" stroke="var(--steel-dark)" stroke-width="1.2"/>\
+<path d="M472 250 L440 250 L416 296 L416 316 L442 316 L462 274 Z" fill="var(--steel)" stroke="var(--steel-dark)" stroke-width="1.2"/>\
+<path d="M352 326 L412 326 L412 366 L360 366 Z" fill="var(--steel-dark)"/>\
+<path d="M488 326 L428 326 L428 366 L480 366 Z" fill="var(--steel-dark)"/>\
+<path d="M420 248 C420 268,414 276,414 296 L414 366 C412 420,410 440,409 470 L431 470 C430 440,428 420,426 366 L426 296 C426 276,420 268,420 248 Z" fill="url(#arcG)" opacity=".92"/>\
+<rect x="150" y="470" width="255" height="46" fill="var(--steel-dark)"/>\
+<rect x="435" y="470" width="255" height="46" fill="var(--steel-dark)"/>\
+<g stroke="var(--heat)" stroke-width="2" stroke-linecap="round" opacity=".85">\
+<path d="M404 520 L392 552"/><path d="M412 522 L408 556"/><path d="M428 522 L432 556"/><path d="M436 520 L448 552"/></g>\
+<g class="leader"><path d="M300 192 L356 192"/><path d="M300 240 L400 240"/><path d="M300 300 L378 272"/>\
+<path d="M429 240 L600 218"/><path d="M480 346 L600 352"/><path d="M431 410 L600 420"/></g>\
+<text class="lbl" x="294" y="189" text-anchor="end" fill="var(--ink)">'+L.swirl+'</text>\
+<text class="lbl-sm" x="294" y="204" text-anchor="end" fill="var(--ink-3)">'+L.swirlSub+'</text>\
+<text class="lbl" x="294" y="237" text-anchor="end" fill="var(--ink)">'+L.electrode+'</text>\
+<text class="lbl-sm" x="294" y="252" text-anchor="end" fill="var(--ink-3)">'+L.electrodeSub+'</text>\
+<text class="lbl" x="294" y="297" text-anchor="end" fill="var(--ink)">'+L.nozzle+'</text>\
+<text class="lbl-sm" x="294" y="312" text-anchor="end" fill="var(--ink-3)">'+L.nozzleSub+'</text>\
+<text class="lbl" x="608" y="215" fill="var(--ink)">'+L.hafnium+'</text>\
+<text class="lbl-sm" x="608" y="230" fill="var(--ink-3)">'+L.hafniumSub+'</text>\
+<text class="lbl" x="608" y="349" fill="var(--ink)">'+L.shield+'</text>\
+<text class="lbl-sm" x="608" y="364" fill="var(--ink-3)">'+L.shieldSub+'</text>\
+<text class="lbl" x="608" y="417" fill="var(--ink)">'+L.arc+'</text>\
+<text class="lbl-sm" x="608" y="432" fill="var(--ink-3)">20 000 – 30 000 °C</text>\
+<text class="lbl-sm" x="150" y="500" fill="var(--ink-3)">'+L.work+'</text>\
+</svg>'; },
+
+pilot: function (L) { return '\
+<svg viewBox="0 0 900 290" role="img" aria-label="'+L.alt+'">\
+<text class="lbl" x="40" y="32" fill="var(--ink)">'+L.t1+'</text>\
+<rect x="196" y="70" width="30" height="74" rx="2" fill="var(--copper)"/>\
+<rect x="204" y="136" width="14" height="12" fill="var(--hafnium)"/>\
+<path d="M172 154 L196 154 L212 182 L212 194 L196 194 L182 168 Z" fill="var(--steel)"/>\
+<path d="M250 154 L226 154 L210 182 L210 194 L226 194 L240 168 Z" fill="var(--steel)"/>\
+<path d="M211 150 C211 164,200 170,190 174" stroke="var(--arc)" stroke-width="4" fill="none" stroke-linecap="round"/>\
+<rect x="120" y="244" width="180" height="26" fill="var(--steel-dark)"/>\
+<text class="lbl-sm" x="256" y="178" fill="var(--arc)">'+L.c1+'</text>\
+<text class="lbl-sm" x="120" y="284" fill="var(--ink-3)">'+L.n1+'</text>\
+<path d="M450 54 L450 272" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 5"/>\
+<text class="lbl" x="490" y="32" fill="var(--ink)">'+L.t2+'</text>\
+<rect x="646" y="70" width="30" height="74" rx="2" fill="var(--copper)"/>\
+<rect x="654" y="136" width="14" height="12" fill="var(--hafnium)"/>\
+<path d="M622 154 L646 154 L662 182 L662 194 L646 194 L632 168 Z" fill="var(--steel)"/>\
+<path d="M700 154 L676 154 L660 182 L660 194 L676 194 L690 168 Z" fill="var(--steel)"/>\
+<path d="M661 150 L661 244" stroke="var(--arc-glow)" stroke-width="7" fill="none" stroke-linecap="round" opacity=".45"/>\
+<path d="M661 150 L661 244" stroke="var(--arc)" stroke-width="3.4" fill="none" stroke-linecap="round"/>\
+<rect x="560" y="244" width="92" height="26" fill="var(--steel-dark)"/>\
+<rect x="670" y="244" width="92" height="26" fill="var(--steel-dark)"/>\
+<text class="lbl-sm" x="706" y="216" fill="var(--arc)">'+L.c2+'</text>\
+<text class="lbl-sm" x="552" y="284" fill="var(--ink-3)">'+L.n2+'</text>\
+</svg>'; },
+
+thc: function (L) { return '\
+<svg viewBox="0 0 900 250" role="img" aria-label="'+L.alt+'">\
+<text class="lbl-sm" x="92" y="32" text-anchor="middle" fill="var(--ink-3)">'+L.low+'</text>\
+<rect x="72" y="48" width="40" height="44" rx="2" fill="var(--steel)"/>\
+<path d="M92 94 L92 142" stroke="var(--arc)" stroke-width="3.4" stroke-linecap="round"/>\
+<rect x="24" y="142" width="136" height="24" fill="var(--steel-dark)"/>\
+<text class="lbl" x="92" y="194" text-anchor="middle" fill="var(--ink)">120 V</text>\
+<text class="lbl-sm" x="310" y="32" text-anchor="middle" fill="var(--ok)">'+L.ok+'</text>\
+<rect x="290" y="48" width="40" height="44" rx="2" fill="var(--steel)"/>\
+<path d="M310 94 L310 142" stroke="var(--arc)" stroke-width="3.4" stroke-linecap="round"/>\
+<rect x="242" y="142" width="136" height="24" fill="var(--steel-dark)"/>\
+<text class="lbl" x="310" y="194" text-anchor="middle" fill="var(--ok)">148 V</text>\
+<text class="lbl-sm" x="528" y="32" text-anchor="middle" fill="var(--ink-3)">'+L.high+'</text>\
+<rect x="508" y="26" width="40" height="44" rx="2" fill="var(--steel)"/>\
+<path d="M528 72 L528 142" stroke="var(--arc)" stroke-width="3.4" stroke-linecap="round"/>\
+<rect x="460" y="142" width="136" height="24" fill="var(--steel-dark)"/>\
+<text class="lbl" x="528" y="194" text-anchor="middle" fill="var(--ink)">176 V</text>\
+<path d="M640 40 L640 214" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 5"/>\
+<text class="lbl" x="668" y="96" fill="var(--arc)">'+L.r1+'</text>\
+<text class="lbl" x="668" y="126" fill="var(--ink)">'+L.r2+'</text>\
+<text class="lbl" x="668" y="146" fill="var(--ink)">'+L.r3+'</text>\
+</svg>'; },
+
+sparks: function (L) { return '\
+<svg viewBox="0 0 900 230" role="img" aria-label="'+L.alt+'">\
+<rect x="40" y="56" width="200" height="20" fill="var(--steel-dark)"/>\
+<path d="M138 38 L138 56" stroke="var(--arc)" stroke-width="3.2" stroke-linecap="round"/>\
+<path d="M150 30 L176 30" stroke="var(--ink-3)" stroke-width="1.4"/><path d="M176 30 l-7 -4 l0 8 z" fill="var(--ink-3)"/>\
+<g stroke="var(--heat)" stroke-width="2.2" stroke-linecap="round"><path d="M136 80 L96 128"/><path d="M142 80 L108 134"/><path d="M148 80 L120 138"/></g>\
+<text class="lbl" x="140" y="176" text-anchor="middle" fill="var(--bad)">'+L.fast+'</text>\
+<text class="lbl-sm" x="140" y="196" text-anchor="middle" fill="var(--ink-3)">'+L.fast1+'</text>\
+<text class="lbl-sm" x="140" y="212" text-anchor="middle" fill="var(--ink-3)">'+L.fast2+'</text>\
+<rect x="350" y="56" width="200" height="20" fill="var(--steel-dark)"/>\
+<path d="M448 38 L448 56" stroke="var(--arc)" stroke-width="3.2" stroke-linecap="round"/>\
+<path d="M460 30 L486 30" stroke="var(--ink-3)" stroke-width="1.4"/><path d="M486 30 l-7 -4 l0 8 z" fill="var(--ink-3)"/>\
+<g stroke="var(--heat)" stroke-width="2.2" stroke-linecap="round"><path d="M442 80 L438 138"/><path d="M448 80 L448 142"/><path d="M454 80 L458 138"/></g>\
+<text class="lbl" x="450" y="176" text-anchor="middle" fill="var(--ok)">'+L.good+'</text>\
+<text class="lbl-sm" x="450" y="196" text-anchor="middle" fill="var(--ink-3)">'+L.good1+'</text>\
+<rect x="660" y="56" width="200" height="20" fill="var(--steel-dark)"/>\
+<path d="M758 38 L758 56" stroke="var(--arc)" stroke-width="3.2" stroke-linecap="round"/>\
+<path d="M770 30 L796 30" stroke="var(--ink-3)" stroke-width="1.4"/><path d="M796 30 l-7 -4 l0 8 z" fill="var(--ink-3)"/>\
+<g stroke="var(--heat)" stroke-width="2.2" stroke-linecap="round"><path d="M752 54 L724 18"/><path d="M764 54 L792 18"/><path d="M758 80 L758 124"/></g>\
+<text class="lbl" x="760" y="176" text-anchor="middle" fill="var(--warn)">'+L.slow+'</text>\
+<text class="lbl-sm" x="760" y="196" text-anchor="middle" fill="var(--ink-3)">'+L.slow1+'</text>\
+<text class="lbl-sm" x="760" y="212" text-anchor="middle" fill="var(--ink-3)">'+L.slow2+'</text>\
+</svg>'; },
+
+laserhead: function (L) { return '\
+<svg viewBox="0 0 900 560" role="img" aria-label="'+L.alt+'">\
+<rect x="360" y="30" width="120" height="40" rx="3" fill="var(--steel-dark)"/>\
+<text class="lbl-sm" x="370" y="55" fill="var(--panel)">'+L.fiber+'</text>\
+<path d="M420 70 L420 110" stroke="var(--beam)" stroke-width="3"/>\
+<rect x="330" y="110" width="180" height="300" rx="4" fill="var(--steel)" opacity=".22"/>\
+<rect x="330" y="110" width="180" height="300" rx="4" fill="none" stroke="var(--steel-dark)" stroke-width="1.5"/>\
+<ellipse cx="420" cy="140" rx="46" ry="11" fill="var(--water)" opacity=".55"/>\
+<ellipse cx="420" cy="140" rx="46" ry="11" fill="none" stroke="var(--water)" stroke-width="1.4"/>\
+<path d="M420 151 L378 236 M420 151 L462 236" stroke="var(--beam)" stroke-width="2" opacity=".55"/>\
+<ellipse cx="420" cy="244" rx="48" ry="12" fill="var(--water)" opacity=".55"/>\
+<ellipse cx="420" cy="244" rx="48" ry="12" fill="none" stroke="var(--water)" stroke-width="1.4"/>\
+<path d="M374 256 L420 372 L466 256 Z" fill="var(--beam)" opacity=".30"/>\
+<path d="M374 256 L420 372 M466 256 L420 372" stroke="var(--beam)" stroke-width="2"/>\
+<ellipse cx="420" cy="330" rx="40" ry="9" fill="var(--ok)" opacity=".38"/>\
+<ellipse cx="420" cy="330" rx="40" ry="9" fill="none" stroke="var(--ok)" stroke-width="1.4"/>\
+<path d="M382 410 L412 410 L412 446 L428 446 L428 410 L458 410 L458 446 L442 462 L398 462 L382 446 Z" fill="var(--steel-dark)"/>\
+<path d="M420 372 L420 490" stroke="var(--beam)" stroke-width="3.4" stroke-linecap="round"/>\
+<path d="M356 400 L392 424" stroke="var(--water)" stroke-width="2" stroke-dasharray="5 4"/>\
+<path d="M484 400 L448 424" stroke="var(--water)" stroke-width="2" stroke-dasharray="5 4"/>\
+<text class="lbl-sm" x="312" y="396" fill="var(--water)">'+L.gas+'</text>\
+<text class="lbl-sm" x="490" y="396" fill="var(--water)">'+L.gas+'</text>\
+<rect x="180" y="490" width="228" height="40" fill="var(--steel-dark)"/>\
+<rect x="432" y="490" width="228" height="40" fill="var(--steel-dark)"/>\
+<g class="leader"><path d="M466 140 L610 128"/><path d="M468 244 L610 232"/><path d="M460 330 L610 322"/>\
+<path d="M458 428 L610 420"/><path d="M424 470 L610 486"/></g>\
+<text class="lbl" x="618" y="125" fill="var(--ink)">'+L.collim+'</text>\
+<text class="lbl-sm" x="618" y="140" fill="var(--ink-3)">'+L.collimSub+'</text>\
+<text class="lbl" x="618" y="229" fill="var(--ink)">'+L.focus+'</text>\
+<text class="lbl-sm" x="618" y="244" fill="var(--ink-3)">'+L.focusSub+'</text>\
+<text class="lbl" x="618" y="319" fill="var(--ok)">'+L.glass+'</text>\
+<text class="lbl-sm" x="618" y="334" fill="var(--ink-3)">'+L.glassSub+'</text>\
+<text class="lbl" x="618" y="417" fill="var(--ink)">'+L.nozzle+'</text>\
+<text class="lbl-sm" x="618" y="432" fill="var(--ink-3)">'+L.nozzleSub+'</text>\
+<text class="lbl" x="618" y="483" fill="var(--ink)">'+L.fp+'</text>\
+<text class="lbl-sm" x="618" y="498" fill="var(--ink-3)">'+L.fpSub+'</text>\
+</svg>'; },
+
+waterhead: function (L) { return '\
+<svg viewBox="0 0 900 520" role="img" aria-label="'+L.alt+'">\
+<rect x="380" y="24" width="60" height="70" rx="3" fill="var(--steel-dark)"/>\
+<text class="lbl-sm" x="450" y="62" fill="var(--water)">'+L.press+'</text>\
+<path d="M410 94 L410 130" stroke="var(--water)" stroke-width="5"/>\
+<rect x="356" y="130" width="108" height="42" rx="2" fill="var(--steel)"/>\
+<rect x="400" y="150" width="20" height="8" fill="var(--panel)"/>\
+<rect x="402" y="152" width="16" height="4" fill="var(--bad)"/>\
+<rect x="344" y="180" width="132" height="92" rx="3" fill="var(--steel)" opacity=".3"/>\
+<rect x="344" y="180" width="132" height="92" rx="3" fill="none" stroke="var(--steel-dark)" stroke-width="1.4"/>\
+<path d="M300 200 L344 222" stroke="var(--heat)" stroke-width="3" stroke-dasharray="4 3"/>\
+<text class="lbl-sm" x="214" y="198" fill="var(--heat)">'+L.abr+'</text>\
+<text class="lbl-sm" x="214" y="212" fill="var(--ink-3)">'+L.abrSub+'</text>\
+<g fill="var(--heat)" opacity=".8"><circle cx="392" cy="212" r="2.6"/><circle cx="416" cy="226" r="2.2"/>\
+<circle cx="404" cy="244" r="2.4"/><circle cx="428" cy="206" r="2"/><circle cx="386" cy="238" r="2.2"/></g>\
+<rect x="392" y="272" width="36" height="120" rx="2" fill="var(--steel-dark)"/>\
+<rect x="404" y="272" width="12" height="120" fill="var(--water)" opacity=".55"/>\
+<path d="M410 392 L410 452" stroke="var(--water)" stroke-width="7" stroke-linecap="round" opacity=".5"/>\
+<path d="M410 392 L410 452" stroke="var(--water)" stroke-width="3" stroke-linecap="round"/>\
+<rect x="190" y="452" width="214" height="40" fill="var(--steel-dark)"/>\
+<rect x="418" y="452" width="214" height="40" fill="var(--steel-dark)"/>\
+<path d="M404 452 L400 492 M416 452 L420 492" stroke="var(--water)" stroke-width="1.4" stroke-dasharray="3 3"/>\
+<g class="leader"><path d="M468 156 L610 140"/><path d="M480 224 L610 216"/><path d="M432 330 L610 320"/><path d="M424 472 L610 470"/></g>\
+<text class="lbl" x="618" y="137" fill="var(--bad)">'+L.orifice+'</text>\
+<text class="lbl-sm" x="618" y="152" fill="var(--ink-3)">'+L.orificeSub+'</text>\
+<text class="lbl" x="618" y="213" fill="var(--ink)">'+L.mix+'</text>\
+<text class="lbl-sm" x="618" y="228" fill="var(--ink-3)">'+L.mixSub+'</text>\
+<text class="lbl" x="618" y="317" fill="var(--ink)">'+L.tube+'</text>\
+<text class="lbl-sm" x="618" y="332" fill="var(--ink-3)">'+L.tubeSub+'</text>\
+<text class="lbl" x="618" y="467" fill="var(--water)">'+L.taper+'</text>\
+<text class="lbl-sm" x="618" y="482" fill="var(--ink-3)">'+L.taperSub+'</text>\
+</svg>'; },
+
+oxy: function (L) { return '\
+<svg viewBox="0 0 900 420" role="img" aria-label="'+L.alt+'">\
+<rect x="360" y="40" width="120" height="120" rx="4" fill="var(--steel)" opacity=".28"/>\
+<rect x="360" y="40" width="120" height="120" rx="4" fill="none" stroke="var(--steel-dark)" stroke-width="1.4"/>\
+<text class="lbl-sm" x="256" y="76" fill="var(--heat)">'+L.fuel+'</text>\
+<path d="M300 84 L360 100" stroke="var(--heat)" stroke-width="2" stroke-dasharray="4 3"/>\
+<text class="lbl-sm" x="500" y="76" fill="var(--water)">'+L.o2+'</text>\
+<path d="M540 84 L480 100" stroke="var(--water)" stroke-width="2" stroke-dasharray="4 3"/>\
+<path d="M382 160 L458 160 L442 226 L398 226 Z" fill="var(--steel-dark)"/>\
+<rect x="412" y="160" width="16" height="66" fill="var(--water)" opacity=".5"/>\
+<g fill="var(--heat)" opacity=".7"><path d="M398 226 L392 268 L404 268 Z"/><path d="M442 226 L448 268 L436 268 Z"/></g>\
+<text class="lbl-sm" x="266" y="256" fill="var(--heat)">'+L.flame+'</text>\
+<path d="M420 226 L420 310" stroke="var(--water)" stroke-width="5" stroke-linecap="round" opacity=".75"/>\
+<text class="lbl-sm" x="466" y="280" fill="var(--water)">'+L.jet+'</text>\
+<rect x="190" y="310" width="220" height="48" fill="var(--steel-dark)"/>\
+<rect x="430" y="310" width="220" height="48" fill="var(--steel-dark)"/>\
+<g stroke="var(--heat)" stroke-width="2.4" stroke-linecap="round" opacity=".85">\
+<path d="M412 362 L400 400"/><path d="M420 362 L420 404"/><path d="M430 362 L442 400"/></g>\
+<text class="lbl-sm" x="452" y="392" fill="var(--heat)">'+L.blow+'</text>\
+<g class="leader"><path d="M462 190 L620 178"/><path d="M420 330 L620 320"/></g>\
+<text class="lbl" x="628" y="175" fill="var(--ink)">'+L.tip+'</text>\
+<text class="lbl-sm" x="628" y="190" fill="var(--ink-3)">'+L.tipSub+'</text>\
+<text class="lbl" x="628" y="317" fill="var(--ink)">'+L.burn+'</text>\
+<text class="lbl-sm" x="628" y="332" fill="var(--ink-3)">'+L.burnSub+'</text>\
+</svg>'; }
+};
+</script>
+
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
