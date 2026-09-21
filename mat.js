@@ -85,6 +85,33 @@ MAT.uk = {
       '<b>інша партія</b> того самого матеріалу поводиться інакше',
       '<b>лист не плаский</b> — контроль висоти не встигає'] },
     {type:'callout', hd:'Питання, яке треба ставити рано', p:'«А це на тому самому матеріалі, що вчора?» Одна відповідь відсіює цілий клас причин ще до того, як ти кудись підключишся.'} ]}
+,
+  { n: '11', h2: 'Міцність і що означає марка', blocks: [
+    {type:'callout', hd:'Ключ до позначення', p:'Число в марці конструкційної сталі — це <b>межа текучості в мегапаскалях</b>. <b>S235</b> означає 235 МПа, <b>S355</b> — 355. Літера S від <i>structural</i>. Знаючи це, ти читаєш марку без довідника.'},
+    {type:'table', head:['Матеріал','Межа текучості Re','Межа міцності Rm'], rows:[
+      ['<b>S235</b> — звичайна конструкційна','≥ 235 МПа','360–510 МПа'],
+      ['<b>S355</b> — підвищеної міцності','≥ 355 МПа','470–630 МПа'],
+      ['<b>1.4301</b> (AISI 304) нержавійка','~210 МПа','500–700 МПа'],
+      ['<b>EN AW-6082 T6</b> алюміній','~260 МПа','~310 МПа'],
+      ['<b>Ti6Al4V</b> титан Grade 5','~830 МПа','900–1100 МПа'] ]},
+    {type:'grid', cells:[
+      {kv:'Re — межа текучості', h3:'Де починається незворотне', p:'До неї метал пружний і повертається у форму. За нею <b>деформується назавжди</b>. Конструкції рахують саме по ній.'},
+      {kv:'Rm — межа міцності', h3:'Де рветься', p:'Максимальне напруження перед руйнуванням. Між Re і Rm метал ще тримає, але вже зіпсований.'} ]} ]},
+
+  { n: '12', h2: 'Температури плавлення — і правило кисневого різання', blocks: [
+    {type:'p', html:'Уся умова кисневого різання видна з однієї таблиці: <b>оксид має плавитися нижче за сам метал</b>.'},
+    {type:'table', head:['Метал','Плавиться','Оксид плавиться','Кисневе різання'], rows:[
+      ['Залізо','1538 °C','FeO <b>1377 °C</b>','<b>так</b> — оксид рідший, витікає'],
+      ['Хром','1907 °C','Cr₂O₃ <b>2435 °C</b>','ні — кірка гасить процес'],
+      ['Алюміній','660 °C','Al₂O₃ <b>2050 °C</b>','ні — кірка ще гірша'],
+      ['Мідь','1085 °C','—','ні — теплопровідність'],
+      ['Титан','1668 °C','TiO₂ 1843 °C','формально ні, але <b>горить</b> так бурхливо, що ріжеться'] ]} ]},
+
+  { n: '13', h2: 'Чому кромка після різання гартується', blocks: [
+    {type:'p', html:'Це питання про діаграму залізо-вуглець, але відповідати на нього треба практично.'},
+    {type:'p', html:'При нагріві понад приблизно <b>727 °C</b> структура сталі переходить в <b>аустеніт</b>. Якщо далі дати їй охолонути повільно — повернеться нормальна м\u2019яка структура. Але біля різу метал охолоджується <b>дуже швидко</b>, бо поруч холодна маса листа відбирає тепло.'},
+    {type:'callout', hd:'Наслідок', p:'Швидке охолодження з аустенітної області дає <b>мартенсит</b> — твердий і крихкий. Саме тому кромка після термічного різання буває загартованою: вона <b>вбиває фрезу</b> при подальшій обробці й може <b>тріскати</b> на високовуглецевих сталях.'},
+    {type:'p', html:'Чим більше вуглецю, тим сильніший ефект. Понад приблизно <b>0,3 % C</b> уже потрібен попередній підігрів деталі й повільне охолодження. Це не теорія — це причина, чому клієнт скаржиться на тріщини.'} ]}
   ]
 };
 
@@ -170,6 +197,33 @@ MAT.sk = {
       '<b>iná šarža</b> toho istého materiálu sa správa inak',
       '<b>plech nie je rovný</b> — riadenie výšky nestíha'] },
     {type:'callout', hd:'Otázka, ktorú treba položiť skoro', p:'„Je to na tom istom materiáli ako včera?“ Jedna odpoveď odfiltruje celú triedu príčin ešte pred tým, než sa niekam pripojíš.'} ]}
+,
+  { n: '11', h2: 'Pevnosť a čo znamená značka', blocks: [
+    {type:'callout', hd:'Kľúč k označeniu', p:'Číslo v značke konštrukčnej ocele je <b>medza klzu v megapascaloch</b>. <b>S235</b> znamená 235 MPa, <b>S355</b> 355. Písmeno S od <i>structural</i>. Keď to vieš, prečítaš značku bez príručky.'},
+    {type:'table', head:['Materiál','Medza klzu Re','Medza pevnosti Rm'], rows:[
+      ['<b>S235</b> — bežná konštrukčná','≥ 235 MPa','360–510 MPa'],
+      ['<b>S355</b> — zvýšenej pevnosti','≥ 355 MPa','470–630 MPa'],
+      ['<b>1.4301</b> (AISI 304) nerez','~210 MPa','500–700 MPa'],
+      ['<b>EN AW-6082 T6</b> hliník','~260 MPa','~310 MPa'],
+      ['<b>Ti6Al4V</b> titán Grade 5','~830 MPa','900–1100 MPa'] ]},
+    {type:'grid', cells:[
+      {kv:'Re — medza klzu', h3:'Kde sa začína nevratné', p:'Do nej je kov pružný a vráti sa do tvaru. Za ňou sa <b>deformuje natrvalo</b>. Konštrukcie sa počítajú práve na ňu.'},
+      {kv:'Rm — medza pevnosti', h3:'Kde praskne', p:'Najvyššie napätie pred porušením. Medzi Re a Rm kov ešte drží, ale už je znehodnotený.'} ]} ]},
+
+  { n: '12', h2: 'Teploty tavenia — a pravidlo autogénu', blocks: [
+    {type:'p', html:'Celá podmienka autogénneho rezania je vidieť z jednej tabuľky: <b>oxid sa musí taviť nižšie ako samotný kov</b>.'},
+    {type:'table', head:['Kov','Taví sa','Oxid sa taví','Autogén'], rows:[
+      ['Železo','1538 °C','FeO <b>1377 °C</b>','<b>áno</b> — oxid je redší, vyteká'],
+      ['Chróm','1907 °C','Cr₂O₃ <b>2435 °C</b>','nie — kôra udusí proces'],
+      ['Hliník','660 °C','Al₂O₃ <b>2050 °C</b>','nie — kôra je ešte horšia'],
+      ['Meď','1085 °C','—','nie — tepelná vodivosť'],
+      ['Titán','1668 °C','TiO₂ 1843 °C','formálne nie, ale <b>horí</b> tak prudko, že sa reže'] ]} ]},
+
+  { n: '13', h2: 'Prečo sa hrana po rezaní zakalí', blocks: [
+    {type:'p', html:'Je to otázka na diagram železo-uhlík, ale odpovedať treba prakticky.'},
+    {type:'p', html:'Pri ohreve nad približne <b>727 °C</b> prechádza štruktúra ocele na <b>austenit</b>. Ak potom chladne pomaly, vráti sa bežná mäkká štruktúra. Lenže pri reze kov chladne <b>veľmi rýchlo</b>, lebo susedná studená masa plechu odvedie teplo.'},
+    {type:'callout', hd:'Dôsledok', p:'Rýchle ochladenie z austenitickej oblasti dá <b>martenzit</b> — tvrdý a krehký. Preto býva hrana po tepelnom delení zakalená: <b>ničí frézu</b> pri ďalšom obrábaní a pri vysokouhlíkových oceliach môže <b>praskať</b>.'},
+    {type:'p', html:'Čím viac uhlíka, tým silnejší efekt. Nad približne <b>0,3 % C</b> už treba predhrev dielca a pomalé chladnutie. Nie je to teória — je to príčina, prečo sa zákazník sťažuje na trhliny.'} ]}
   ]
 };
 
@@ -255,5 +309,32 @@ MAT.en = {
       '<b>a different batch</b> of the same material behaves differently',
       '<b>the plate is not flat</b> — height control cannot keep up'] },
     {type:'callout', hd:'A question worth asking early', p:'"Is this on the same material as yesterday?" One answer rules out a whole class of causes before you connect to anything.'} ]}
+,
+  { n: '11', h2: 'Strength, and what a grade designation means', blocks: [
+    {type:'callout', hd:'The key to the designation', p:'The number in a structural steel grade is the <b>yield strength in megapascals</b>. <b>S235</b> means 235 MPa, <b>S355</b> means 355. The S stands for <i>structural</i>. Once you know that, you can read a grade without a reference book.'},
+    {type:'table', head:['Material','Yield Re','Tensile Rm'], rows:[
+      ['<b>S235</b> — ordinary structural','≥ 235 MPa','360–510 MPa'],
+      ['<b>S355</b> — higher strength','≥ 355 MPa','470–630 MPa'],
+      ['<b>1.4301</b> (AISI 304) stainless','~210 MPa','500–700 MPa'],
+      ['<b>EN AW-6082 T6</b> aluminium','~260 MPa','~310 MPa'],
+      ['<b>Ti6Al4V</b> titanium Grade 5','~830 MPa','900–1100 MPa'] ]},
+    {type:'grid', cells:[
+      {kv:'Re — yield strength', h3:'Where the permanent begins', p:'Below it the metal is elastic and springs back. Above it, it <b>deforms permanently</b>. Structures are calculated against this figure.'},
+      {kv:'Rm — tensile strength', h3:'Where it breaks', p:'The maximum stress before failure. Between Re and Rm the metal still holds, but it is already ruined.'} ]} ]},
+
+  { n: '12', h2: 'Melting points — and the oxy-fuel rule', blocks: [
+    {type:'p', html:'The entire condition for oxy-fuel cutting is visible in one table: <b>the oxide must melt below the metal itself</b>.'},
+    {type:'table', head:['Metal','Melts at','Its oxide melts at','Oxy-fuel'], rows:[
+      ['Iron','1538 °C','FeO <b>1377 °C</b>','<b>yes</b> — the oxide is more fluid and flows out'],
+      ['Chromium','1907 °C','Cr₂O₃ <b>2435 °C</b>','no — the crust smothers the process'],
+      ['Aluminium','660 °C','Al₂O₃ <b>2050 °C</b>','no — the crust is worse still'],
+      ['Copper','1085 °C','—','no — thermal conductivity'],
+      ['Titanium','1668 °C','TiO₂ 1843 °C','formally no, but it <b>burns</b> so fiercely that it cuts'] ]} ]},
+
+  { n: '13', h2: 'Why the edge hardens after cutting', blocks: [
+    {type:'p', html:'This is a question about the iron-carbon diagram, but it should be answered practically.'},
+    {type:'p', html:'Heated above roughly <b>727 °C</b>, the structure of steel turns to <b>austenite</b>. Cooled slowly from there, it returns to its ordinary soft structure. But beside a cut the metal cools <b>very fast</b>, because the cold mass of the plate next to it draws the heat away.'},
+    {type:'callout', hd:'The consequence', p:'Rapid cooling from the austenitic range produces <b>martensite</b> — hard and brittle. That is why a thermally cut edge is often hardened: it <b>destroys cutters</b> during later machining, and on high-carbon steels it can <b>crack</b>.'},
+    {type:'p', html:'The more carbon, the stronger the effect. Above roughly <b>0.3 % C</b> the part needs preheating and slow cooling. This is not theory — it is the reason a customer reports cracks.'} ]}
   ]
 };
