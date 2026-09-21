@@ -20,6 +20,7 @@ Live: https://pl1ump.github.io/service-job/
 | Interview | 30 questions with model answers, collapsed until tapped, in all three languages |
 | G-code | where it came from, the CAD→CAM→post chain, program anatomy, command reference, ordering rules |
 | Documentation | reading drawings, ISO 286 fits, ISO 2768 general tolerances, ISO 1101 datums, EN ISO 9013, process plans |
+| Materials | how each metal behaves under thermal cutting, the heat-affected zone, distortion, laser kW and plasma amps by thickness |
 
 Three languages: Ukrainian, Slovak, English. The choice is kept in `localStorage`.
 
@@ -32,6 +33,7 @@ glossary.js   the trilingual term list
 interview.js  interview questions with model answers
 gcode.js      the G-code section
 docs.js       drawings, tolerances and standards
+mat.js        material behaviour and power selection
 app.js        renders panels from content.js, wires navigation and filters
 ```
 

@@ -9,7 +9,7 @@ CONTENT.uk = {
   brand: 'Шпаргалка сервісного техніка',
   sub: 'особисті нотатки · В. Ковба',
   foot: 'Особисті нотатки для підготовки до співбесіди · не є офіційною документацією виробника',
-  tabs: { plasma:'Плазма', laser:'Лазер', water:'Воднострумінь', oxy:'Кисень', mill:'Фрезерування', common:'Спільне', faults:'Несправності', gloss:'Словник', iv:'Співбесіда', gcode:'G-код', tdocs:'Документація' },
+  tabs: { plasma:'Плазма', laser:'Лазер', water:'Воднострумінь', oxy:'Кисень', mill:'Фрезерування', common:'Спільне', faults:'Несправності', gloss:'Словник', iv:'Співбесіда', gcode:'G-код', tdocs:'Документація', mat:'Матеріали' },
 
   svg: {
     torch: { alt:'Розріз плазмового пальника', gas:'ГАЗ', swirl:'Завихрювач', swirlSub:'закрутка → скіс на один бік',
@@ -208,7 +208,7 @@ CONTENT.sk = {
   brand: 'Šablóna servisného technika',
   sub: 'osobné poznámky · V. Kovba',
   foot: 'Osobné poznámky k príprave na pohovor · nejde o oficiálnu dokumentáciu výrobcu',
-  tabs: { plasma:'Plazma', laser:'Laser', water:'Vodný lúč', oxy:'Autogén', mill:'Frézovanie', common:'Spoločné', faults:'Poruchy', gloss:'Slovník', iv:'Pohovor', gcode:'G-kód', tdocs:'Dokumentácia' },
+  tabs: { plasma:'Plazma', laser:'Laser', water:'Vodný lúč', oxy:'Autogén', mill:'Frézovanie', common:'Spoločné', faults:'Poruchy', gloss:'Slovník', iv:'Pohovor', gcode:'G-kód', tdocs:'Dokumentácia', mat:'Materiály' },
 
   svg: {
     torch: { alt:'Rez plazmovým horákom', gas:'PLYN', swirl:'Vírivý krúžok', swirlSub:'vír → úkos na jednu stranu',
@@ -407,7 +407,7 @@ CONTENT.en = {
   brand: 'Service technician cheat sheet',
   sub: 'personal notes · V. Kovba',
   foot: 'Personal study notes prepared for an interview · not official manufacturer documentation',
-  tabs: { plasma:'Plasma', laser:'Laser', water:'Waterjet', oxy:'Oxy-fuel', mill:'Milling', common:'Common', faults:'Faults', gloss:'Glossary', iv:'Interview', gcode:'G-code', tdocs:'Documentation' },
+  tabs: { plasma:'Plasma', laser:'Laser', water:'Waterjet', oxy:'Oxy-fuel', mill:'Milling', common:'Common', faults:'Faults', gloss:'Glossary', iv:'Interview', gcode:'G-code', tdocs:'Documentation', mat:'Materials' },
 
   svg: {
     torch: { alt:'Plasma torch cross-section', gas:'GAS', swirl:'Swirl ring', swirlSub:'swirl → bevel on one side',
