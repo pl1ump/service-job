@@ -2,11 +2,11 @@
 (function () {
   'use strict';
 
-  var TAB_ORDER = ['plasma', 'laser', 'water', 'oxy', 'mill', 'common', 'faults', 'gloss', 'iv', 'gcode'];
+  var TAB_ORDER = ['plasma', 'laser', 'water', 'oxy', 'mill', 'common', 'faults', 'gloss', 'iv', 'gcode', 'tdocs'];
   var BEAD = {
     plasma: 'var(--arc)', laser: 'var(--beam)', water: 'var(--water)',
     oxy: 'var(--heat)', mill: 'var(--mech)', common: 'var(--steel)', faults: 'var(--bad)',
-    gloss: 'var(--hafnium)', iv: 'var(--ok)', gcode: 'var(--copper)'
+    gloss: 'var(--hafnium)', iv: 'var(--ok)', gcode: 'var(--copper)', tdocs: 'var(--steel-dark)'
   };
   var TAGCLS = { prog: 't-prog', cons: 't-cons', set: 't-set', mach: 't-mach', safe: 't-safe' };
 
@@ -169,20 +169,21 @@
   }
 
 
-  function gcodePage() {
-    var M = GCODE[lang];
+  function genericPage(M, accent) {
     var html = '<div class="panelview">' +
       '<div class="phead">' +
-      '<div class="eyebrow" style="color:var(--copper)">' + M.eyebrow + '</div>' +
+      '<div class="eyebrow" style="color:' + accent + '">' + M.eyebrow + '</div>' +
       '<h1>' + M.h1 + '</h1><p class="lede">' + M.lede + '</p></div>';
     M.sections.forEach(function (sec) {
-      html += '<section><h2><span class="n" style="color:var(--copper)">' + sec.n +
+      html += '<section><h2><span class="n" style="color:' + accent + '">' + sec.n +
               '</span>' + sec.h2 + '</h2>';
-      sec.blocks.forEach(function (b) { html += block(b, CONTENT[lang], 'var(--copper)'); });
+      sec.blocks.forEach(function (b) { html += block(b, CONTENT[lang], accent); });
       html += '</section>';
     });
     return html + '</div>';
   }
+
+  function gcodePage() { return genericPage(GCODE[lang], 'var(--copper)'); }
 
   /* ---------- wiring ---------- */
   function wireFaults(C) {
@@ -231,6 +232,7 @@
     else if (tab === 'gloss') { v.innerHTML = glossPage(); wireGloss(); }
     else if (tab === 'iv') { v.innerHTML = ivPage(); }
     else if (tab === 'gcode') { v.innerHTML = gcodePage(); }
+    else if (tab === 'tdocs') { v.innerHTML = genericPage(TDOCS[lang], 'var(--steel-dark)'); }
     else { v.innerHTML = techPage(tab, C); }
   }
 

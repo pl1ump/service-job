@@ -19,6 +19,7 @@ Live: https://pl1ump.github.io/service-job/
 | Glossary | 177 terms in Ukrainian / Slovak / English, searchable across all three at once |
 | Interview | 30 questions with model answers, collapsed until tapped, in all three languages |
 | G-code | where it came from, the CAD→CAM→post chain, program anatomy, command reference, ordering rules |
+| Documentation | reading drawings, ISO 286 fits, ISO 2768 general tolerances, ISO 1101 datums, EN ISO 9013, process plans |
 
 Three languages: Ukrainian, Slovak, English. The choice is kept in `localStorage`.
 
@@ -30,6 +31,7 @@ content.js    all text in three languages + the fault table
 glossary.js   the trilingual term list
 interview.js  interview questions with model answers
 gcode.js      the G-code section
+docs.js       drawings, tolerances and standards
 app.js        renders panels from content.js, wires navigation and filters
 ```
 
