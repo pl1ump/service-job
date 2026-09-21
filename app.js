@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  var TAB_ORDER = ['plasma', 'laser', 'water', 'oxy', 'mill', 'common', 'faults', 'gloss', 'iv', 'gcode', 'tdocs', 'mat'];
+  var TAB_ORDER = ['plasma', 'laser', 'water', 'oxy', 'mill', 'common', 'faults', 'gloss', 'gcode', 'tdocs', 'mat', 'iv'];
   var BEAD = {
     plasma: 'var(--arc)', laser: 'var(--beam)', water: 'var(--water)',
     oxy: 'var(--heat)', mill: 'var(--mech)', common: 'var(--steel)', faults: 'var(--bad)',
