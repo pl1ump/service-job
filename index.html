@@ -181,6 +181,18 @@
   }
   .qhint{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);}
 
+  pre.code{
+    margin:0;background:var(--panel);border:1px solid var(--line-soft);
+    border-left:3px solid var(--copper);border-radius:2px;
+    padding:14px 16px;overflow-x:auto;
+  }
+  pre.code code{
+    font-family:var(--f-mono);font-size:12.5px;line-height:1.65;
+    color:var(--ink-2);white-space:pre;
+  }
+  pre.code code b{color:var(--ink);font-weight:600;}
+  pre.code code i{color:var(--ink-3);font-style:normal;}
+
   footer{max-width:1080px;margin:0 auto;padding:0 16px 60px;color:var(--ink-3);font-size:12.5px;font-family:var(--f-mono);}
   footer .fr{border-top:1px solid var(--line);padding-top:16px;}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
@@ -428,9 +440,10 @@ oxy: function (L) { return '\
 };
 </script>
 
-<script src="content.js?v=20260915a"></script>
-<script src="glossary.js?v=20260915a"></script>
-<script src="interview.js?v=20260915a"></script>
-<script src="app.js?v=20260915a"></script>
+<script src="content.js?v=20260921a"></script>
+<script src="glossary.js?v=20260921a"></script>
+<script src="interview.js?v=20260921a"></script>
+<script src="gcode.js?v=20260921a"></script>
+<script src="app.js?v=20260921a"></script>
 </body>
 </html>

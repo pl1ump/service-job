@@ -2,11 +2,11 @@
 (function () {
   'use strict';
 
-  var TAB_ORDER = ['plasma', 'laser', 'water', 'oxy', 'mill', 'common', 'faults', 'gloss', 'iv'];
+  var TAB_ORDER = ['plasma', 'laser', 'water', 'oxy', 'mill', 'common', 'faults', 'gloss', 'iv', 'gcode'];
   var BEAD = {
     plasma: 'var(--arc)', laser: 'var(--beam)', water: 'var(--water)',
     oxy: 'var(--heat)', mill: 'var(--mech)', common: 'var(--steel)', faults: 'var(--bad)',
-    gloss: 'var(--hafnium)', iv: 'var(--ok)'
+    gloss: 'var(--hafnium)', iv: 'var(--ok)', gcode: 'var(--copper)'
   };
   var TAGCLS = { prog: 't-prog', cons: 't-cons', set: 't-set', mach: 't-mach', safe: 't-safe' };
 
@@ -47,8 +47,12 @@
           b.head.map(function (h) { return '<th>' + h + '</th>'; }).join('') +
           '</tr></thead><tbody>' +
           b.rows.map(function (r) {
-            return '<tr><td class="sym">' + r[0] + '</td><td class="cause">' + r[1] + '</td></tr>';
+            return '<tr>' + r.map(function (cell, i) {
+              return '<td class="' + (i === 0 ? 'sym' : 'cause') + '">' + cell + '</td>';
+            }).join('') + '</tr>';
           }).join('') + '</tbody></table></div>';
+      case 'code':
+        return '<pre class="code"><code>' + b.text + '</code></pre>';
       case 'fig':
         return '<figure class="fig">' + SVG[b.svg](C.svg[b.svg]) + '</figure>' +
           (b.caption ? '<figcaption>' + b.caption + '</figcaption>' : '');
@@ -164,6 +168,22 @@
     return html + '</div></section></div>';
   }
 
+
+  function gcodePage() {
+    var M = GCODE[lang];
+    var html = '<div class="panelview">' +
+      '<div class="phead">' +
+      '<div class="eyebrow" style="color:var(--copper)">' + M.eyebrow + '</div>' +
+      '<h1>' + M.h1 + '</h1><p class="lede">' + M.lede + '</p></div>';
+    M.sections.forEach(function (sec) {
+      html += '<section><h2><span class="n" style="color:var(--copper)">' + sec.n +
+              '</span>' + sec.h2 + '</h2>';
+      sec.blocks.forEach(function (b) { html += block(b, CONTENT[lang], 'var(--copper)'); });
+      html += '</section>';
+    });
+    return html + '</div>';
+  }
+
   /* ---------- wiring ---------- */
   function wireFaults(C) {
     var q = document.getElementById('q');
@@ -210,6 +230,7 @@
     if (tab === 'faults') { v.innerHTML = faultsPage(C); wireFaults(C); }
     else if (tab === 'gloss') { v.innerHTML = glossPage(); wireGloss(); }
     else if (tab === 'iv') { v.innerHTML = ivPage(); }
+    else if (tab === 'gcode') { v.innerHTML = gcodePage(); }
     else { v.innerHTML = techPage(tab, C); }
   }
 
