@@ -17,7 +17,7 @@ Live: https://pl1ump.github.io/service-job/
 | Common | machine construction, program structure, three height-control principles, remote diagnosis |
 | Faults | 36 symptom → cause entries, searchable and filterable by technology |
 | Glossary | 177 terms in Ukrainian / Slovak / English, searchable across all three at once |
-| Interview | 30 questions with model answers, collapsed until tapped, in all three languages |
+| FAQ | 24 technical questions with answers, collapsed until tapped, in all three languages |
 | G-code | where it came from, the CAD→CAM→post chain, program anatomy, command reference, ordering rules |
 | Documentation | reading drawings, ISO 286 fits, ISO 2768 general tolerances, ISO 1101 datums, EN ISO 9013, process plans |
 | Materials | how each metal behaves under thermal cutting, the heat-affected zone, distortion, laser kW and plasma amps by thickness |
