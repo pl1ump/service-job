@@ -2,11 +2,12 @@
 (function () {
   'use strict';
 
-  var TAB_ORDER = ['plasma', 'laser', 'water', 'oxy', 'mill', 'common', 'faults', 'gloss', 'gcode', 'tdocs', 'mat', 'iv'];
+  var TAB_ORDER = ['plasma', 'laser', 'water', 'oxy', 'mill', 'common', 'faults', 'gloss', 'gcode', 'tdocs', 'mat', 'mg', 'iv'];
   var BEAD = {
     plasma: 'var(--arc)', laser: 'var(--beam)', water: 'var(--water)',
     oxy: 'var(--heat)', mill: 'var(--mech)', common: 'var(--steel)', faults: 'var(--bad)',
-    gloss: 'var(--hafnium)', iv: 'var(--ok)', gcode: 'var(--copper)', tdocs: 'var(--steel-dark)', mat: 'var(--heat)'
+    gloss: 'var(--hafnium)', iv: 'var(--ok)', gcode: 'var(--copper)', tdocs: 'var(--steel-dark)', mat: 'var(--heat)',
+    mg: 'var(--warn)'
   };
   var TAGCLS = { prog: 't-prog', cons: 't-cons', set: 't-set', mach: 't-mach', safe: 't-safe' };
 
@@ -234,6 +235,7 @@
     else if (tab === 'gcode') { v.innerHTML = gcodePage(); }
     else if (tab === 'tdocs') { v.innerHTML = genericPage(TDOCS[lang], 'var(--steel-dark)'); }
     else if (tab === 'mat') { v.innerHTML = genericPage(MAT[lang], 'var(--heat)'); }
+    else if (tab === 'mg') { v.innerHTML = genericPage(MG[lang], 'var(--warn)'); }
     else { v.innerHTML = techPage(tab, C); }
   }
 
